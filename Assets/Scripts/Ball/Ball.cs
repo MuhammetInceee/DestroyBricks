@@ -7,6 +7,7 @@ namespace DestroyBricks.Ball
     public class Ball : MonoBehaviour
     {
         private Rigidbody2D _ballRb;
+        private bool _isGameStarted = false;
         [SerializeField] private BallSettings _ballSettings;
         void Start()
         {
@@ -16,15 +17,26 @@ namespace DestroyBricks.Ball
 
         void Update()
         {
-            //StartHop();
-            ConstantSpeed();
+            OnPlay();
+        }
+
+        void OnPlay()
+        {
+            StartHop();
+            if (_isGameStarted)
+            {
+                ConstantSpeed();
+            }
         }
 
         void StartHop()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetMouseButton(0))
             {
-                _ballRb.AddForce(Vector3.up * Time.deltaTime * 20000);
+                _ballRb.AddForce(Vector3.up);
+                _isGameStarted = true;
+                _ballRb.constraints = RigidbodyConstraints2D.None;
+                _ballRb.constraints = RigidbodyConstraints2D.FreezeRotation;
             }
         }
 
