@@ -31,7 +31,7 @@ namespace DestroyBricks.Ball
 
         void StartHop()
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetKey(KeyCode.Space))
             {
                 _ballRb.AddForce(Vector3.up);
                 _isGameStarted = true;

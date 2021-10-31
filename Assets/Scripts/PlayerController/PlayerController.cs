@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace DestroyBricks.Controller
 {
@@ -13,6 +14,7 @@ namespace DestroyBricks.Controller
         {
             Move();
             Limitation();
+            RestartGame();
         }
 
         private void Move()
@@ -30,6 +32,13 @@ namespace DestroyBricks.Controller
             else if(transform.position.x < -_borderLine)
             {
                 transform.position = new Vector3(-_borderLine, transform.position.y, transform.position.z);
+            }
+        }
+        private void RestartGame()
+        {
+            if (Input.GetKey(KeyCode.R))
+            {
+                SceneManager.LoadScene(0);
             }
         }
     }
